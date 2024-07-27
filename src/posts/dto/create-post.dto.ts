@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsIn, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsIn } from 'class-validator';
 
 export class CreatePostDto {
-  @IsUrl()
+  @IsNotEmpty()
   bannerImage: string;
 
   @IsNotEmpty()
