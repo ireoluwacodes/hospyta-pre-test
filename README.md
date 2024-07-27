@@ -40,5 +40,8 @@ Implemented a recursive approach to handle nested comments, allowing comments to
 ## Schema Structure for Comments
 Solution: Used a recursive approach by allowing each comment to reference an array of sub-comments (replies), making the schema flexible for any depth of nesting.
 
+## File Upload
+I had been used to uploading to cloudinary with express and i had a middleware that saved to disk storage my files, here i wanted to use memory storage which only provides a file buffer not a path hence i had to modify my cloudinary logic to upload as a buffer.
+
 ## Ensuring One Upvote/Downvote per User
 Solution: Added arrays (upvotedBy and downvotedBy) in the Post schema to store user IDs. Checked these arrays before allowing an upvote or downvote, ensuring each user can only vote once.
