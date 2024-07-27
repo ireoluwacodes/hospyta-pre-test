@@ -15,13 +15,18 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async register(email: string, password: string, profileImage: string) {
+  async register(
+    email: string,
+    password: string,
+    profileImage: string,
+    fullName: string,
+  ) {
     const user = await this.usersService.findOne({ email });
     if (user) {
       throw new ForbiddenException('User already Exists');
     }
     const hash = await this.passwordService.hashPassword(password);
-    const dto = { email, password: hash, profileImage };
+    const dto = { fullName, email, password: hash, profileImage };
     const { _doc } = await this.usersService.create(dto);
     return {
       ..._doc,
