@@ -97,7 +97,7 @@ export class PostsService {
     commentId: string,
     postId: string,
     content: string,
-  ): Promise<Post> {
+  ): Promise<Comment> {
     const post = await this.postModel.findById(postId);
     if (!post) {
       throw new NotFoundException('Post not found');
@@ -117,7 +117,7 @@ export class PostsService {
     comment.replies.push(String(reply._id));
     await comment.save();
 
-    return post;
+    return comment;
   }
 
   async getComments(postId: string): Promise<string[]> {
