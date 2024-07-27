@@ -25,9 +25,9 @@ export class AuthController {
   async signUp(@Body() signUpDto: SignUpDto) {
     return this.authService.register(
       signUpDto.email,
-      signUpDto.fullName,
       signUpDto.password,
       signUpDto.profileImage,
+      signUpDto.fullName,
     );
   }
 
