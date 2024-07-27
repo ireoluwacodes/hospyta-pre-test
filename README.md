@@ -1,7 +1,7 @@
 # Overview
 This project involves creating a set of endpoints for managing posts, including functionalities for upvotes, downvotes, comments, and comment replies. Additionally, JWT-based authentication is implemented to secure the endpoints. Below are the high-level steps taken to solve the problem, along with the challenges faced and their solutions.
 
-##Documentation
+## Documentation
 
 [See Docs](https://documenter.getpostman.com/view/22684334/2sA3kaBJrw)
 
