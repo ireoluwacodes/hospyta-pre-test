@@ -6,6 +6,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './schemas/user.schema';
 import { ConfigService } from '@nestjs/config';
 import { v2 as cloudinary } from 'cloudinary';
+import { UploadApiResponse, UploadApiErrorResponse } from 'cloudinary';
+import { Express } from 'express';
 
 @Injectable()
 export class UserService {
@@ -38,11 +40,17 @@ export class UserService {
   async uploadImage(file: Express.Multer.File): Promise<string> {
     if (!file) throw new BadRequestException('No file');
 
-    const result = await cloudinary.uploader.upload(file.path, {
-      resource_type: 'auto',
+    return new Promise((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(
+          { resource_type: 'auto' },
+          (error: UploadApiErrorResponse, result: UploadApiResponse) => {
+            if (error) return reject(error);
+            resolve(result.secure_url);
+          },
+        )
+        .end(file.buffer);
     });
-
-    return result.secure_url;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {

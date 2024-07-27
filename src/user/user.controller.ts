@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller('user')
 export class UserController {
@@ -15,9 +16,9 @@ export class UserController {
 
   @HttpCode(HttpStatus.CREATED)
   @Post('upload')
-  @UseInterceptors(FileInterceptor('image'))
+  @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
     const result = await this.userService.uploadImage(file);
-    return result;
+    return { result };
   }
 }
