@@ -15,7 +15,7 @@ export class UserController {
 
   @HttpCode(HttpStatus.CREATED)
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('image'))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
     const result = await this.userService.uploadImage(file);
     return result;
