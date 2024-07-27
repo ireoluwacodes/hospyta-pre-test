@@ -51,9 +51,9 @@ export class PostsService {
     return 'deleted';
   }
 
-  async findMyPosts(sub: string): Promise<User> {
+  async findMyPosts(sub: string): Promise<Post[]> {
     const userWithPosts = await this.userModel.findById(sub).populate('posts');
-    return userWithPosts;
+    return userWithPosts.posts;
   }
 
   async findAll(category?: string): Promise<Post[]> {
