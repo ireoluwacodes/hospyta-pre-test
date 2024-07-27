@@ -105,13 +105,13 @@ export class PostsController {
     return this.postsService.getReplies(postId, commentId);
   }
 
-  @Post('upvote/:id')
+  @Get('upvote/:id')
   upvotePost(@Param('id') id: string, @Req() request: ProtectedRequest) {
     const { sub } = request.user;
     return this.postsService.upvotePost(sub, id);
   }
 
-  @Post('downvote/:id')
+  @Get('downvote/:id')
   downvotePost(@Param('id') id: string, @Req() request: ProtectedRequest) {
     const { sub } = request.user;
     return this.postsService.downvotePost(sub, id);
