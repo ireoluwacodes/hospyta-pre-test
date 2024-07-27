@@ -63,9 +63,10 @@ export class PostsService {
   }
 
   async findOne(id: string) {
-    const post = await this.postModel
-      .findByIdAndUpdate(id, {})
-      .populate('postedBy');
+    const post = await this.postModel.findByIdAndUpdate(id, {}).populate({
+      path: 'postedBy',
+      select: 'fullName profileImage',
+    });
     if (!post) throw new BadRequestException('Post not found');
     return post;
   }
