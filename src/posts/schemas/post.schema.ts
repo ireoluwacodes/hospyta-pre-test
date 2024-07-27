@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
 
 export type PostDocument = HydratedDocument<Post>;
+export type CommentDocument = HydratedDocument<Comment>;
 
 // comment schema
 @Schema()
@@ -20,7 +21,7 @@ export class Comment {
   dislikes: number;
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Comment' }])
-  replies: Comment[];
+  replies: string[];
 }
 
 export const CommentSchema = SchemaFactory.createForClass(Comment);
@@ -39,6 +40,7 @@ export const CommentSchema = SchemaFactory.createForClass(Comment);
 @Schema({ timestamps: true })
 export class Post {
   [x: string]: any;
+
   @Prop()
   bannerImage: string;
 
@@ -65,10 +67,19 @@ export class Post {
   upvotes: number;
 
   @Prop({ default: 0 })
+  views: number;
+
+  @Prop({ default: 0 })
   downvotes: number;
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Comment' }])
-  comments: Comment[];
+  comments: string[];
+
+  @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User' }])
+  upvotedBy: string[];
+
+  @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User' }])
+  downvotedBy: string[];
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);
