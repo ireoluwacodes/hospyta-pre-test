@@ -17,7 +17,7 @@ Created Mongoose schemas for Post, Comment, and User.
 Defined DTOs for creating and updating posts and comments.
 
 ## Implement Auth with JWT
-Set up JWT-based authentication using Passport.
+Set up JWT-based authentication
 
 Created guards to protect the endpoints and ensure only authenticated users can interact with them.
 
@@ -30,8 +30,8 @@ Implemented endpoints for adding comments to posts and replying to comments.
 
 ## Handle Upvotes and Downvotes
 Ensured that each user can upvote or downvote a post only once by storing user IDs in arrays.
-Nested Comment Structure
 
+## Nested Comment Structure
 Implemented a recursive approach to handle nested comments, allowing comments to have replies.
 
 
